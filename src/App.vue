@@ -1,13 +1,13 @@
 <template>
 <div>
   <h1>My to do list</h1>
-  <form action="">
+  <form action="" @submit.prevent="valid">
     <input type="text" placeholder="example buy candy..." v-model="addToList">
-    <button @click.prevent="valid">Add</button>
+    <button >Add</button>
   </form>
   <ul v-for="(item,index) in myTabs"
   v-bind:key="index">
-    <li v-bind:style="{background: color, padding: margeInt, display: visibility}" @click='supp'>{{item}}</li>
+    <li :class="style" @click='supp(index)'>{{item}}</li>
   </ul>
 </div>
 </template>
@@ -20,15 +20,17 @@ export default {
    return{
      addToList: '',
      myTabs: [],
-     color: 'pink',
-     margeInt: '10px',
-     visibility : true
+    style: 'color'
    }
  },methods:{
    valid:function(){
      this.myTabs.push(this.addToList)
     this.addToList = ''
+    
    },
+   supp:function(index){
+    this.myTabs.splice(index,1)
+   }
 
  }
 }
@@ -45,5 +47,10 @@ export default {
 }
 input, button{
   padding: 10px;
+}
+.color{
+background: pink;
+padding: 20px;
+
 }
 </style>
