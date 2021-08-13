@@ -2,12 +2,12 @@
 <div>
   <h1>My to do list</h1>
   <form action="" @submit.prevent="valid">
-    <input type="text" placeholder="example buy candy..." v-model="addToList">
+    <input type="text" placeholder="example buy some candies..." v-model="addToList">
     <button >Add</button>
   </form>
   <ul v-for="(item,index) in myTabs"
   v-bind:key="index">
-    <li :class="style" @click='supp(index)'>{{item}}</li>
+    <li :class="style" @click='supp(index)'>{{item}} <a href="#">  Supprimé</a></li>
   </ul>
 </div>
 </template>
@@ -25,6 +25,7 @@ export default {
  },methods:{
    valid:function(){
      this.myTabs.push(this.addToList)
+      this.myTabs.reverse()
     this.addToList = ''
     
    },
@@ -52,5 +53,10 @@ input, button{
 background: pink;
 padding: 20px;
 
+}
+a{
+  color: black;
+  text-decoration: none;
+  margin-left: 10%;
 }
 </style>
